@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- charset é a codificação de caracteres, UTF-8 é a mais comum e suporta a maioria dos caracteres usados em diferentes idiomas. -->
+    <meta charset="UTF-8">
+    <!-- Define a largura da tela de acordo com a largura do dispositivo, garantindo que o conteúdo seja exibido corretamente -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Emporio RJSS</title>
+    <!-- prepara conexãop com servidores -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- faz o mesmo para o servidor de arquivos de fonte -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- A terceira baixa de fato as fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- conecta ao style (css) -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <header class="hero">
+      <!-- mostra pequeno texto acima do titulo principal -->
+      <p class="hero-eyebrow">Todos os produtos</p>
+      <h1>Nossos <em>Produtos</em></h1>
+      <p class="hero-sub">Grãos, temperos, oleoginosas, suplementose muito mais - tudo pesado na hora para você.</p>
+      <!-- bloco com as três estatísticas lado a lado -->
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num" id="totalProd">384</span>
+          <span class="stat-label">Produtos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="totalCats">18</span>
+          <span class="stat-label">Categorias</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">R$/g</span>
+          <span class="stat-label">Preço por grama</span>
+        </div>
+
+      </div>
+    </header>
+    <!-- div fixada no topo da tela enquanto usuario rola a tela (barra de pesquisa e filtros) -->
+    <div class="controls">
+      <!-- div para posicionar a lupa dentro do css -->
+      <div class="search-wrap">
+        <!-- desenha o icone de lupa usando SVG (Scalable Vector Graphics) -->
+        <!-- current color significa que a cor da linha sera a mesma do texto -->
+        <!-- circle desenha a lupa e patch o cabo da lupa -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <!-- typetext permite que o usuario digite um texto, id é usado para identificar o que foi escrito -->
+        <!-- placeholder e o texto que aparece quando a caixa de digitação esta vazia -->
+        <input class="search-input" type="text" id="searchInput" placeholder="Buscar produtos...">
+      </div>
+      <!-- select é usado para ordenação, option são as opções de ordenação, value é o que o JS lê internamente -->
+      <select class="sort-select" id="sortSelect">
+        <option value="name">Nome A-Z</option>
+        <option value="name_desc">Nome Z-A</option>
+        <option value="price_asc">Menor preço</option>
+        <option value="price_desc">Maior preço</option>
+      </select>
+      <!-- para mostrar quantos produtos estao disponiveis, strong deixa em negrito -->
+      <span class="count-badge">
+        Exibindo <strong id="visibleCount">384</strong> produtos
+      </span>
+    </div>
+
+    <!-- layout principal: sidebar + conteúdo lado a lado -->
+    <div class="layout">
+      <!-- aside é usado para barra lateral, id para identificar a lista de categorias no JS -->
+      <aside class="sidebar">
+        <p class="sidebar-title">Categorias</p>
+        <div id="catList"></div>
+      </aside>
+      <!-- main é o conteudo principal da pagina -->
+      <main class="main" id="mainContent">
+      </main>
+    </div>
+
+    <!-- botões flutuantes de contato -->
+    <!-- ficam fixos no canto inferior direito da tela -->
+    <div class="floating-buttons">
+
+        <!-- botão do WhatsApp -->
+        <!-- o href leva para o whatsapp web com o número da loja -->
+        <!-- target="_blank" abre em uma nova aba -->
+        <a class="float-btn whatsapp" href="https://wa.me/5511953637866" target="_blank">
+            <!-- icone do whatsapp em SVG -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.533 5.857L.057 23.428a.75.75 0 0 0 .916.916l5.571-1.476A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.504-5.222-1.383l-.374-.217-3.875 1.027 1.027-3.875-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+        </a>
+
+        <!-- botão do Instagram -->
+        <!-- o href leva para o perfil do instagram da loja -->
+        <a class="float-btn instagram" href="https://www.instagram.com/emporiorsjj/" target="_blank">
+            <!-- icone do instagram em SVG -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+        </a>
+
+    </div>
+
+    <!-- conecta ao JS para funcionalidade da pagina -->
+    <script src="script.js"></script>
+
+  </body>
+</html>

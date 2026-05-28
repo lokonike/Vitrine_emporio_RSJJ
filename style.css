@@ -1,0 +1,474 @@
+/* Seletor que representa toda raiz do documento, onde podemos definir variáveis globais para todo o CSS.*/
+:root {
+    --cream: #f5f0e8; /*bege claro(fundo geral da pagina)*/
+    --warm-white: #fdfaf4; /*branco quente(fundo de sessoes)*/
+    --dark: #1a1a14; /*preto esverdeado(cor dos textos)*/
+    --olive: #5c6434; /*verde oliva escuro(bordas, botoes e preços)*/
+    --olive-light: #8a9457; /*verde oliva claro(quando passar o mouse por cima)*/
+    --terra: #b85c2a; /*terra escura(quando houver itens disponiveis)*/
+    --gold: #c9a84c; /*dourado(textos de destaque)*/
+    --muted: #7a7567; /*cinza castanho(textos secundários)*/
+    --card-bg: #ffffff; /*branco puro(fundo dos cards)*/
+    --border: #e2ddd0; /*bege medio(bordas dos cards)*/
+}
+
+/* Asteristico seleciona todos os elementos da pagina */
+* {
+    box-sizing: border-box; /*box sizing: border-box faz com que o padding e a borda sejam incluídos na largura total e altura dos elementos*/
+    margin: 0; /*margin: 0; remove o espaçamento padrão dos elementos*/
+    padding: 0; /*padding: 0; remove o preenchimento padrão dos elementos*/
+}
+
+/* Estiliza o body, como tudo esta no body, se aplica a pagina inteira*/
+body {
+    font-family: 'DM sans', sans-serif; /* font family para definir a fonte da pagina*/
+    background-color: var(--cream); /* backgroun define o fundo da pagina */
+    color: var(--dark); /*color define a cor padrao */
+    min-height: 100vh; /*min-height: 100vh define a altura padrao da pagina*/
+}
+
+/* O ponto . antes de hero significa que é uma classe. Vai estilizar o <header class="hero">:*/
+.hero {
+    background: var(--dark); /*cor de fundo da seção hero*/
+    color: var(--cream);   /*cor do texto da seção hero*/
+    padding: 60px 40px 50px; /*define o espaçamento da seção hero */
+    text-align: center; /*alinha o texto ao centro da seção hero*/
+    position: relative; /*posiciona elementos dentro da seção hero */
+    overflow: hidden; /*oculta qualquer conteúdo que ultrapasse os limites da seção hero */
+}
+
+/* Pseudo-elemento ::before é usado para criar um elemento antes do conteúdo real da seção hero, permitindo adicionar efeitos visuais sem afetar o conteúdo principal. */
+.hero::before{
+    content: ''; /*obrigatório para pseudo-elementos aparecerem. Fica vazio porque é só decoração.*/
+    position: absolute; /*posiciona o pseudo-elemento de forma absoluta em relação à seção hero*/
+    inset: 0; /*atalho para top: 0; right: 0; bottom: 0; left: 0 — faz o elemento cobrir o pai inteiro.*/
+    background: radial-gradient(ellipse at 70% 30%, rgba(201,168,76,.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(92,100,52,.25) 0%, transparent 55%); /*dois gradientes radiais sobrepostos */
+    pointer-events: none; /*faz esse elemento ignorar cliques do mouse, para não atrapalhar a interação com o conteúdo real embaixo.*/
+}
+
+/*pequeno texto acima do titulo*/
+.hero-eyebrow {
+    font-size: 11px; /*tamanho da fonte do texto de destaque na seção hero*/
+    font-weight: 500; /*peso da fonte do texto de destaque na seção hero*/
+    letter-spacing: 4px; /*espaçamento entre letras do texto de destaque na seção hero*/
+    text-transform: uppercase; /*transforma o texto em maiúsculas via CSS, sem precisar digitar em maiúsculo no HTML.*/
+    color: var(--gold); /*cor do texto de destaque na seção hero*/
+    margin-bottom: 16px; /*espaço abaixo, separando do título principal.*/
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif; /* fonte serifada para o título.*/
+    font-size: clamp(2.4rem, 6vw, 4.2rem); /*tamanho do título que se ajusta responsivamente */
+    line-height: 1.1; /*espaçamento entre linhas do título*/
+    margin-bottom: 14px; /*espaç título, separando do parágrafo.*/
+    color: var(--warm-white); /*cor do título*/
+}
+
+.hero h1 em {
+    color: var(--gold);
+}
+
+.hero-sub {
+    font-size: 15px;
+    color: rgba(245, 240, 232, .65);
+    font-weight: 300;
+    max-width: 480px; /*limita a largura máxima*/
+    margin: 0 auto 28px;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex; /*exibe os itens em linha, um ao lado do outro*/
+    justify-content: center; /*centraliza os itens horizontalmente dentro do flex.*/
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap; /*quebra para a próxima linha em telas menores*/
+}
+
+.stat {
+    text-align: center; 
+}
+
+.stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color : var(--gold);
+    display: block; /*numero seja exibido em uma linha separada do texto*/
+}
+
+.stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, .5);
+}
+
+.controls {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    position: sticky; /*faz com que a barra de controles fique fixa no topo da tela ao rolar a pag*/
+    top: 0; /*barra de controles no topo da tela*/
+    z-index: 100; /*garante que a barra de controles fique acima de outros itens, evitando que seja sobreposta.*/
+    display: flex; /*exibe os itens em linha, um ao lado do outro*/
+    gap: 16px; 
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-wrap {
+    position: relative; /*posiciona o ícone de busca dentro da pesquisa*/
+    flex: 1; /*campo de pesquisa ocupe todo o espaço disponível na barra de controles.*/
+    min-width: 200px;
+    max-width: 360px;
+}
+
+.search-wrap svg {
+    position: absolute; /*posiciona o ícone de forma absoluta dentro do campo de pesquisa.*/
+    left: 14px; /*distância do ícone à borda esquerda do campo de pesquisa.*/
+    top: 50%; /*posiciona o ícone verticalmente no meio do campo de pesquisa.*/
+    transform: translateY(-50%); /*ajusta a posição do ícone para que fique exatamente centralizado verticalmente.*/
+    color: var(--muted); /*cor do ícone de busca*/
+    pointer-events: none; /*faz com que o ícone de busca seja ignorado pelos eventos de clique, permitindo que o usuário clique no campo de pesquisa sem interferência do ícone.*/
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 14px 10px 42px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM sans', sans-serif;
+    font-size: 14px;
+    background: var(--cream);
+    color: var(--dark);
+    outline: none; /*remove a borda azul padrão do navegador quando o campo está em foco*/
+    transition: border-color .2s; /*anima a mudança de cor da borda em 0.2 segundos, criando uma transição suave.*/
+}
+
+/*aplica estilos quando o elemento está com foco */
+.search-input:focus {
+    border-color: var(--olive); /*cor da borda quando o campo de pesquisa está em foco, indicando que o usuário está interagindo com ele.*/
+}
+
+.sort-select {
+    padding: 10px 14px; 
+    border: 1.5px solid var(--border); 
+    border-radius: 8px; 
+    font-family: 'DM sans', sans-serif; 
+    font-size: 13px; 
+    background: var(--cream); 
+    color: var(--dark); 
+    cursor: pointer; /*muda o cursor para indicar que o elemento é clicável*/
+    outline: none;
+}
+
+.count-badge {
+    margin-left: auto; /*empurra o badge para a extremidade direita da barra de controles, criando um espaçamento automático à esquerda.*/
+    font-size: 13px;
+    color: var(--muted);
+    white-space: nowrap; /*impede que o texto do badge quebre em várias linhas, mantendo-o em uma única linha.*/
+}
+
+.count-badge strong {
+    color: var(--olive); /*cor do número dentro do badge, destacando-o do restante do texto.*/
+}
+
+.layout {
+    display: flex; /*exibe os itens em linha, um ao lado do outro*/
+    max-width: 1320px; /*limita a largura máxima da área de layout para evitar que fique muito larga em telas grandes.*/
+    margin: 0 auto; /*centraliza a área de layout horizontalmente dentro do body, criando margens automáticas a esquerda e direita.*/
+}
+
+/*A barra lateral*/
+.sidebar {
+    width: 220px; 
+    flex-shrink: 0; /*impede que a barra lateral encolha quando a tela for redimensionada*/
+    padding: 28px 0 28px 24px;
+    position: sticky; /*faz com que a barra lateral fique fixa no topo da tela ao rolar a pag*/
+    top: 61px; 
+    height: calc(100vh - 61px);
+    overflow-y: auto; /*adiciona uma barra de rolagem vertical se o conteúdo da barra lateral exceder a altura disponível, permitindo que o usuário role para ver todo o conteúdo.*/
+}
+
+/*O título "Categorias" da sidebar*/
+.sidebar-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    padding-left: 4px;
+}
+
+/* botões de categoria gerados pelo JavaScript:*/
+.cat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 9px 12px;
+    margin-bottom: 3px;
+    border: none; /*border: none e background: transparent — remove o visual padrão feio de botão do navegador*/
+    border-radius: 8px;
+    background: transparent;
+    font-family: 'DM sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--dark);
+    cursor: pointer;
+    text-align: left;
+    transition: background .15s, color .15s;
+}
+
+/*Quando o mouse passa por cima o botão fica com fundo bege.*/
+.cat-btn:hover {
+  background: var(--border);
+}
+
+/*Quando o botão de categoria é clicado, ele recebe a classe "active", que aplica um fundo verde oliva escuro e texto branco para indicar que está selecionado.*/
+.cat-btn.active {
+  background: var(--olive);
+  color: #fff;
+}
+
+/*O badge de contagem dentro do botão ativo fica com fundo branco translúcido.*/
+.cat-btn.active .cat-count {
+  background: rgba(255,255,255,.25);
+  color: #fff;
+}
+
+/*Partes internas de cada botão de categoria — o emoji, o nome e o número de produtos.*/
+.cat-icon {
+    margin-right: 8px;
+    font-size: 15px;
+}
+
+.cat-label {
+  flex: 1;
+}
+
+.cat-count {
+    font-size: 11px;
+    background: var(--border);
+    color: var(--muted);
+    border-radius: 20px;
+    padding: 1px 7px;
+    font-weight: 500;
+}
+/*Partes internas de cada botão de categoria — o emoji, o nome e o número de produtos.*/
+
+.main {
+    flex: 1; /*ocupa todo o espaço restante ao lado da sidebar.*/
+    padding: 28px 24px 48px; 
+    min-width: 0; /*correção necessária no Flexbox. Sem isso, o conteúdo pode vazar para fora do container em alguns casos.*/
+}
+
+/*O cabeçalho de cada seção de categoria*/
+.section-header {
+    display: flex;
+    align-items: baseline; /*alinha os itens pela linha de base do texto*/
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--olive); /*linha verde embaixo do título da seção.*/
+}
+
+/*Título e contagem de cada seção*/
+.section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+.section-header .sec-count {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/*Grid de cards*/
+.grid {
+    display: grid; /*exibe os itens em um layout de grade, permitindo organizar os produtos em linhas e colunas.*/
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /*cria colunas que se ajustam automaticamente ao tamanho da tela*/
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+/*card dos produtos*/
+.card {
+    background: var(--card-bg); /*cor de fundo dos cards de produto*/
+    border: 1px solid var(--border); /*borda dos cards de produto*/
+    border-radius: 12px; /* cantos bem arredondados.*/
+    padding: 16px;
+    transition: transform .2s, box-shadow .2s, border-color .2s; /*anima as mudanças de transformação, sombra e cor da borda em 0.2 segundos, criando uma transição suave quando o usuário interage com o card.*/
+    position: relative; /*necessário para posicionar o badge de "Esgotado" dentro do card.*/
+    overflow: hidden; /*oculta qualquer conteúdo que ultrapasse os limites do card, como o badge de "Esgotado".*/
+}
+
+/* cria uma barra verde de 3px no topo do card*/
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--olive);
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+/*efeito ao passar o mouse por cima do card*/
+.card:hover {
+    transform: translateY(-3px); /*sobe o card 3px criando efeito de elevação.*/
+    box-shadow: 0 8px 24px rgba(26,26,20,.1); /* sombra embaixo do card reforçando o efeito de elevação.*/
+    border-color: var(--olive-light); /*muda a cor da borda para um verde oliva mais claro, destacando ainda mais o card.*/
+}
+
+.card:hover::before {
+    opacity: 1; /*torna a barra verde no topo do card visível, reforçando o destaque do card quando o mouse passa por cima.*/
+}
+
+.card-code {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.card-name {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--dark);
+    margin-bottom: 12px;
+    min-height: 2.7em; /*garante que todos os cards tenham a mesma altura nessa área — mesmo produtos com nomes curtos não deixam o layout desalinhado.*/
+}
+
+/*Área de preços do card — exibe preço por grama e por kilo lado a lado separados por uma linha divisória.*/
+.card-prices {
+    display: flex; 
+    gap: 10px; 
+    align-items: flex-end; /*alinha os preços pela parte de baixo, mesmo que tenham tamanhos de fonte diferentes.*/
+}
+
+.price-block {
+    text-align: center;
+    flex: 1; /*faz com que os blocos de preço ocupem o mesmo espaço dentro do card, criando um layout equilibrado mesmo quando um produto tem apenas um preço.*/
+}
+
+.price-label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.price-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--olive);
+    font-weight: 700;
+}
+
+.price-val.secondary {
+    font-size: .85rem;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.price-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--border);
+    align-self: center;
+}
+/*Área de preços do card — exibe preço por grama e por kilo lado a lado separados por uma linha divisória.*/
+
+.no-price {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/*Aparece quando nenhum produto é encontrado na busca.*/
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+
+.empty svg {
+    margin-bottom: 20px; 
+    opacity: .3;
+}
+
+.empty p {
+    font-size: 16px;
+}
+
+/* =============================
+   BOTÕES FLUTUANTES
+   ============================= */
+
+/* container que agrupa os dois botões no canto inferior direito */
+/* position fixed faz com que fiquem sempre visíveis mesmo ao rolar a pagina */
+.floating-buttons {
+    position: fixed; /* fixo na tela independente da rolagem */
+    bottom: 28px; /* distância do botão ao fundo da tela */
+    right: 28px; /* distância do botão ao lado direito da tela */
+    display: flex; /* coloca os botões um abaixo do outro */
+    flex-direction: column; /* direção vertical */
+    gap: 12px; /* espaço entre os dois botões */
+    z-index: 999; /* fica na frente de tudo na página */
+}
+
+/* estilo base compartilhado pelos dois botões */
+.float-btn {
+    width: 52px; /* largura do botão */
+    height: 52px; /* altura do botão — igual à largura para ficar redondo */
+    border-radius: 50%; /* 50% deixa o elemento completamente redondo */
+    display: flex; /* para centralizar o ícone dentro do botão */
+    align-items: center; /* centraliza verticalmente */
+    justify-content: center; /* centraliza horizontalmente */
+    color: #ffffff; /* cor do ícone SVG — branco */
+    text-decoration: none; /* remove o sublinhado padrão de links */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .25); /* sombra para dar profundidade */
+    transition: transform .2s, box-shadow .2s; /* animação suave ao passar o mouse */
+}
+
+/* efeito ao passar o mouse por cima dos botões */
+.float-btn:hover {
+    transform: translateY(-3px); /* sobe o botão levemente */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .3); /* sombra mais intensa ao elevar */
+}
+
+/* cor específica do botão do WhatsApp */
+.whatsapp {
+    background: #25d366; /* verde oficial do WhatsApp */
+}
+
+/* cor específica do botão do Instagram */
+/* gradiente diagonal que imita as cores oficiais do Instagram */
+.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+
+/*Media query para telas menores, como tablets e smartphones. Ajusta o layout para melhorar a usabilidade e a aparência em dispositivos com telas menores.*/
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /*esconde a barra lateral em telas menores para otimizar o espaço.*/
+    }
+    .controls {
+        padding: 14px 16px; /*reduz o padding da barra de controles em telas menores para economizar espaço.*/
+    }
+    .main {
+        padding: 20px 16px 40px; /*reduz o padding da área principal em telas menores para otimizar o espaço.*/
+    }
+    .hero {
+        padding: 40px 20px; /*reduz o padding da seção hero em telas menores para otimizar o espaço.*/
+    }
+}
