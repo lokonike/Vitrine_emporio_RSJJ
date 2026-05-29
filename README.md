@@ -34,6 +34,7 @@ Sistema web de vitrine digital com todos os produtos do Empório RSJJ, desenvolv
 - DIEGO DOS SANTOS BUENO - 3026104802
 - GUILHERME LEANDRO TORRES - 3025201013
 - CARLOS HENRIQUE MORETTI FRIAS - 3026105673
+- Ederson Santos Lima - 3025106148
 
 ## Instituição
 Uninove — 2026
