@@ -6,7 +6,7 @@ Sistema web de vitrine digital com todos os produtos do Empório RSJJ, desenvolv
 (https://vitrine-emporio-rsjj.vercel.app/)
 
 ## Vídeo de apresentação
-[Link do YouTube](COLE_O_LINK_DO_YOUTUBE_AQUI)
+[Link do YouTube]](https://www.youtube.com/watch?v=Jt-9lPoRz1g))
 
 ## Funcionalidades
 - Vitrine com 384 produtos organizados por categoria
